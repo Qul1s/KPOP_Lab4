@@ -1,10 +1,21 @@
 import { Component } from '@angular/core';
 
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'my-app',
+  template: `<label>Введіть строку:  </label>
+  <input [(ngModel)]="name">
+  <h1>Перевернута строка: {{reverseString(name)}}!</h1>`
 })
 export class AppComponent {
-  title = 'untitled';
+  name= '';
+  reverseString(str: String) {
+    var splitString = str.split("");
+    var reverseArray = splitString.reverse();
+    var joinArray = reverseArray.join("");
+    return str.split("").reverse().join("");
+  }
 }
+
+
+
