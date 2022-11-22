@@ -1,21 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, Output} from '@angular/core';
 
+export class Item{
+  name: string;
+  salary: number;
+  constructor(name: string,salary: number) {
 
-@Component({
-  selector: 'my-app',
-  template: `<label>Введіть строку:  </label>
-  <input [(ngModel)]="name">
-  <h1>Перевернута строка: {{reverseString(name)}}!</h1>`
-})
-export class AppComponent {
-  name= '';
-  reverseString(str: String) {
-    var splitString = str.split("");
-    var reverseArray = splitString.reverse();
-    var joinArray = reverseArray.join("");
-    return str.split("").reverse().join("");
+    this.name = name;
+    this.salary = salary;
   }
 }
 
+@Component({
+  selector: 'my-app',
+  templateUrl:'./app.component.html',
+  styleUrls:['./app.component.css']
 
+})
+export class AppComponent {
+  name:string="";
+  salary:number = 0;
+  Items: Item[] =
+      [
 
+      ];
+  addItem(name: string, salary:number): void {
+    if(name==null)
+      return;
+    this.Items.push(new Item(name,salary));
+  }
+}
